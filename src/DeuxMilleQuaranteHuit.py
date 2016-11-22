@@ -2,7 +2,7 @@ from random import randrange
 
 from src.display import Display
 from src.square import Square
-from src.tools import win, lose, fusion, isFusion, new_direction
+from src.tools import win, lose, fusion, is_fusion, new_direction
 
 
 def new_number():
@@ -10,6 +10,7 @@ def new_number():
 
 
 class DeuxMilleQuaranteHuit:
+
     def __init__(self, size=4):
         self.size = size
         self.grid = [[Square(0)] * size for _ in range(size)]
@@ -18,14 +19,17 @@ class DeuxMilleQuaranteHuit:
         self.add_number()
 
         while not lose(self.grid):
+            print("update grid")
             self.d.print_grid(self.grid)
             moved = False
             while not moved:
                 self.dir = new_direction()
+                print("dir:", self.dir)
                 if self.dir == 0:
-                    self.d.quit()
+                    quit()
                     return
                 moved = self.move_number()
+                print("moved:", moved)
                 self.add_number()
             for i in range(size):
                 for j in range(size):
@@ -33,7 +37,7 @@ class DeuxMilleQuaranteHuit:
             if win(tab):
                 print("win")
         print("Lose")
-        self.d.quit()
+        quit()
 
     def add_number(self):
         count = 0
@@ -43,7 +47,7 @@ class DeuxMilleQuaranteHuit:
                     count += 1
         if not count:
             print("Lose")
-            self.d.quit()
+            quit()
         number = randrange(count) + 1
         for i in range(self.size):
             for j in range(self.size):
@@ -62,7 +66,7 @@ class DeuxMilleQuaranteHuit:
                         move = True
                         while (k >= 0 if self.dir > 0 else k < self.size) and move:
                             if self.grid[k][j] != 0:
-                                if self.grid[k][j].fusion or self.grid[i][j].fusion or not isFusion(
+                                if self.grid[k][j].fusion or self.grid[i][j].fusion or not is_fusion(
                                         self.grid[k][j].value,
                                         self.grid[i][j].value):
                                     if k + self.dir // 2 != i:
@@ -90,7 +94,7 @@ class DeuxMilleQuaranteHuit:
                         move = True
                         while (k >= 0 if self.dir > 0 else k < self.size) and move:
                             if self.grid[i][k] != 0:
-                                if self.grid[i][k].fusion or self.grid[i][j].fusion or not isFusion(
+                                if self.grid[i][k].fusion or self.grid[i][j].fusion or not is_fusion(
                                         self.grid[i][k].value,
                                         self.grid[i][j].value):
                                     if k + self.dir != j:

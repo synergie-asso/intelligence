@@ -15,13 +15,45 @@ def new_direction():
                 return -2
             if event.type == KEYDOWN and event.key == K_DOWN:
                 return -1
+    '''
+        while True:
+            direction = ''.join(input("Enter a direction:"))
+            print("direction:", direction)
+            if 'left' in direction.lower():
+                return 2
+            if 'up' in direction.lower():
+                return 1
+            if 'right' in direction.lower():
+                return -2
+            if 'down' in direction.lower():
+                return -1
+            else:
+                print("failed")
+    '''
+    '''
+    while True:
+        char = sys.stdin.read(1);
+        if (char == "z"):
+            print("dir : 1");
+            return 1;
+        if (char == "q"):
+            print("dir : 2");
+            return 2;
+        if (char == "s"):
+            print("dir : -1");
+            return -1;
+        if (char == "d"):
+            print("dir : -2");
+            return -2;
+        print("Type 'z','q', 's' or 'd'");
+            '''
 
 
 def fusion(carre1):
     return carre1 * 2
 
 
-def isFusion(carre1, carre2):
+def is_fusion(carre1, carre2):
     return carre1 == carre2
 
 
