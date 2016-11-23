@@ -19,21 +19,18 @@ class DeuxMilleQuaranteHuit:
         self.add_number()
 
         while not lose(self.grid):
-            print("update grid")
             self.d.print_grid(self.grid)
             moved = False
             while not moved:
                 self.dir = new_direction()
-                print("dir:", self.dir)
                 if self.dir == 0:
                     quit()
                     return
                 moved = self.move_number()
-                print("moved:", moved)
                 self.add_number()
-            for i in range(size):
-                for j in range(size):
-                    tab[i + size * j] = self.grid[i][j]
+            for i in range(self.size):
+                for j in range(self.size):
+                    tab[i + self.size * j] = self.grid[i][j]
             if win(tab):
                 print("win")
         print("Lose")

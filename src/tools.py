@@ -3,6 +3,7 @@ from pygame.locals import *
 
 
 def new_direction():
+    '''
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -16,20 +17,16 @@ def new_direction():
             if event.type == KEYDOWN and event.key == K_DOWN:
                 return -1
     '''
-        while True:
-            direction = ''.join(input("Enter a direction:"))
-            print("direction:", direction)
-            if 'left' in direction.lower():
-                return 2
-            if 'up' in direction.lower():
-                return 1
-            if 'right' in direction.lower():
-                return -2
-            if 'down' in direction.lower():
-                return -1
-            else:
-                print("failed")
-    '''
+    while True:
+        direction = ''.join(input("Enter a direction: "))
+        if 'left' in direction.lower():
+            return 2
+        if 'up' in direction.lower():
+            return 1
+        if 'right' in direction.lower():
+            return -2
+        if 'down' in direction.lower():
+            return -1
     '''
     while True:
         char = sys.stdin.read(1);
